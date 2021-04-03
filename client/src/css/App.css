@@ -1,0 +1,19 @@
+/* hides elements if vp is at <= 555px wrote for the table in Market.js TransactionHistory.js */
+@media screen and (max-width: 800px) {
+  .td-dis {
+    display: none;
+  }
+}
+
+.td-click:hover {
+  cursor: pointer;
+  background-color: rgb(247, 247, 247);
+}
+
+.tb:hover {
+  cursor: pointer;
+}
+
+.green-arrow:hover {
+  color: rgb(61, 202, 108);
+}

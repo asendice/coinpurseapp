@@ -5,7 +5,7 @@ const SearchNotFound = (props) => {
   return (
     <Segment placeholder>
       <Header icon>
-        <h2>{!props.term  ? "Loading..." : props.term}</h2>
+        <h2>{!props.term  ? "Loading Market..." : props.term}</h2>
         <h3>{!props.term  ? "" : props.nf}</h3>
       </Header>
     </Segment>

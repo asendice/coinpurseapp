@@ -320,7 +320,7 @@ const CoinModal = (props) => {
         </Modal.Content>
         <Modal.Content>
           <Popup
-            content={!props.isLoggedIn ? "Log in to create portfolio." : null}
+            content={!props.isLoggedIn ? "Log in to create a portfolio." : null}
             disabled={!props.isLoggedIn ? false : true}
             trigger={
               <Accordion>
@@ -379,7 +379,7 @@ const CoinModal = (props) => {
         open={failedOpen}
       >
         <Modal.Header>
-          {`Transaction cancelled. Reason: insufficient amount of  ${props.selectedCoin.name}.`}
+          {`Transaction cancelled.  Insufficient amount of  ${props.selectedCoin.name}.`}
           <Button
             onClick={() => setFailedOpen(false)}
             color="orange"

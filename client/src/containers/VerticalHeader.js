@@ -20,7 +20,6 @@ const VerticalHeader = (props) => {
     setMenuStyle(newState.display);
   };
 
-  // <---- Possibly put in a CSS file ---->
   const mobileMenuStyle = {
     display: menuStyle.display,
     margin: 0,

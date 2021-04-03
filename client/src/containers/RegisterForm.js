@@ -37,19 +37,21 @@ const email = (value) =>
 
 const alphaNumeric = (value) =>
   value && /[^a-zA-Z0-9 ]/i.test(value) ? (
-    <span style={{ color: "red" }}>*This field can only contain alphanumeric characters</span>
+    <span style={{ color: "red" }}>
+      *This field can only contain alphanumeric characters
+    </span>
   ) : undefined;
 
 const length = (value) =>
   value && value.length < 4 ? (
     <span style={{ color: "red" }}>
-      {`*This field must contain more than 4 characters.`}
+      *This field must contain more than 4 characters.
     </span>
   ) : undefined;
 const maxLength = (value) =>
   value && value.length > 12 ? (
     <span style={{ color: "red" }}>
-      {`*This field must contain no more than 12 characters.`}
+      *This field must contain no more than 12 characters.
     </span>
   ) : undefined;
 
@@ -103,7 +105,7 @@ let RegisterForm = (props) => {
         <option>advanced</option>
       </Field>
       <Divider hidden />
-      <Button type="submit" color="green" size="massive" fluid >
+      <Button type="submit" color="green" size="massive" fluid>
         Create Your Free Account!
       </Button>
     </Form>

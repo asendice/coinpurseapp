@@ -10,7 +10,7 @@ import Register from "../containers/Register";
 
 const App = () => {
   const menuProps = {
-    name: "coinpurse.app",
+    name: "Coinpurse.app",
     itemOne: "Market",
     itemTwo: "Portfolio",
   };

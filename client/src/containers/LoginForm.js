@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Divider, Label } from "semantic-ui-react";
-import { Form} from "semantic-ui-react";
+import { Form } from "semantic-ui-react";
 import { Field, reduxForm, formValueSelector } from "redux-form";
 
 const renderInput = ({
@@ -22,19 +22,15 @@ const renderInput = ({
 
 const required = (x) => {
   if (!x || x === "") {
-    return (
-      <span style={{ color: "red" }}>
-        *This field is required.
-      </span>
-    );
+    return <span style={{ color: "red" }}>*This field is required.</span>;
   }
   return undefined;
 };
 
 const alphaNumeric = (value) =>
-  value && /[^a-zA-Z0-9 ]/i.test(value)
-    ? "Only alphanumeric characters"
-    : undefined;
+  value && /[^a-zA-Z0-9 ]/i.test(value) ? (
+    <span style={{ color: "red" }}> *Only alphanumeric characters</span>
+  ) : undefined;
 
 const length = (value) =>
   value && value.length < 4 ? (
@@ -73,7 +69,11 @@ let Login = (props) => {
         validate={[required, alphaNumeric, length, maxLength, userNameVal]}
       />
       <Divider hidden />
-      <button href="/market" type="submit" className="ui button massive fluid submit green ">
+      <button
+        href="/market"
+        type="submit"
+        className="ui button massive fluid submit green "
+      >
         Log In
       </button>
     </Form>

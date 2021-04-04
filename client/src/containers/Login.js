@@ -17,11 +17,19 @@ const Login = (props) => {
   const [open, setOpen] = useState(false);
   const onFormSubmit = (formValues) => {
     props.login(formValues);
-    setOpen(true);
+    setTimeout(() => {
+      setOpen(true);
+    }, 2000);
   };
 
   const renderModal = () => {
-    if (!props.loggedIn) {
+    if (props.loggedIn) {
+      return (
+        <>
+          <Redirect to="/market" />
+        </>
+      );
+    } else if (!props.loggedIn) {
       const mapUserInfoError = props.userInfo.data.errors.map((errors) => {
         return errors.user || errors.password;
       });
@@ -43,8 +51,8 @@ const Login = (props) => {
           </Modal.Header>
         </Modal>
       );
-    } else if (props.loggedIn) {
-      return <Redirect to="/market" />;
+    } else {
+      return null;
     }
   };
 

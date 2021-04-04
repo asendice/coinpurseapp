@@ -55,16 +55,7 @@ const Register = (props) => {
         </>
       );
     } else {
-      return (
-        <>
-          <Modal.Header>Failed to register.</Modal.Header>
-          <Modal.Content>
-            <Button href="/register" color="orange" style={{ float: "right" }}>
-              Try Again
-            </Button>
-          </Modal.Content>
-        </>
-      );
+      return <>{null}</>;
     }
   };
 

@@ -41,6 +41,12 @@ const CoinModal = (props) => {
     props.getTransactions(props.userId);
   }, [props.open]);
 
+  if (confirmOpen) {
+    setTimeout(() => {
+      setConfirmOpen(false);
+    }, 2500);
+  }
+
   const values = [
     `$${roundComma(props.selectedCoin.current_price)}`,
     `${roundComma(props.selectedCoin.price_change_percentage_24h)}%`,
@@ -362,8 +368,8 @@ const CoinModal = (props) => {
       >
         <Modal.Header>
           {buy
-            ? `Submitted Buy Transaction for ${props.selectedCoin.name}`
-            : `Submitted Sell Transaction for ${props.selectedCoin.name}`}
+            ? `Submitting... "Buy" Transaction for ${props.selectedCoin.name}`
+            : `Submitting... "Sell" Transaction for ${props.selectedCoin.name}`}
           <Icon
             name="x"
             onClick={() => setConfirmOpen(false)}

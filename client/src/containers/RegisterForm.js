@@ -85,7 +85,7 @@ let RegisterForm = (props) => {
         name="password"
         component={renderInput}
         type="password"
-        validate={[length, required]}
+        validate={[length, required, maxLength, userNameVal]}
       />
       <Divider hidden />
       <Label>Confirm Password</Label>
@@ -93,7 +93,7 @@ let RegisterForm = (props) => {
         name="confirmPassword"
         component={renderInput}
         type="password"
-        validate={[length, required]}
+        validate={[length, required, maxLength, userNameVal]}
       />
       <Divider hidden />
       <Label>Crypto Knowledge </Label>

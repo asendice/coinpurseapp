@@ -46,7 +46,11 @@ const Market = (props) => {
     if (filterMarketForTerm.length === 0) {
       return (
         <div>
-          <SearchNotFound term={term} nf="Zero Results Found..." loading="Loading Market..." />
+          <SearchNotFound
+            term={term}
+            nf="Zero Results Found..."
+            loading="Loading Market..."
+          />
         </div>
       );
     } else {
@@ -97,9 +101,7 @@ const Market = (props) => {
           <Table.Cell>
             {mapFavs.includes(coin.symbol) ? (
               <Icon link name="heart" color="grey" />
-            ) : (
-              null
-            )}
+            ) : null}
           </Table.Cell>
         </Table.Row>
       );

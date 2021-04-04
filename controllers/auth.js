@@ -39,7 +39,7 @@ exports.signup = (req, res, next) => {
       if (user) {
         return res
           .status(422)
-          .json({ errors: [{ user: `${name} username already exists` }] });
+          .json({ errors: [{ user: `"${name}" username already exists` }] });
       } else {
         const user = new User({
           name: name,

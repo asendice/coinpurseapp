@@ -41,7 +41,7 @@ const TransactionHistory = (props) => {
     if (filterTransactionsByTerm.length === 0) {
       return (
         <div key="nf">
-          <SearchNotFound term={term} nf="Zero Transactions Found..." loading="" />
+          <SearchNotFound term={term} nf="Zero Transactions Found..." loading="No Transaction History Yet..." />
         </div>
       );
     } else {

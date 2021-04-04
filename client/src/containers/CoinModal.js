@@ -154,7 +154,7 @@ const CoinModal = (props) => {
     if (join[1][1]) {
       return join.map((stat) => {
         return (
-          <Grid.Column key={stat[1].id}>
+          <Grid.Column key={stat[1]._id}>
             <Popup
               content={stat[1].labelDescription}
               position="right center"
@@ -255,7 +255,7 @@ const CoinModal = (props) => {
       return fav.symbol === props.selectedCoin.symbol;
     });
     return (
-      <Modal.Header>
+      <Modal.Header key={props.selectedCoin.id}>
         <Image avatar src={props.selectedCoin.image} />
         {props.selectedCoin.name}
         <span style={{ color: "grey" }}>
@@ -308,7 +308,7 @@ const CoinModal = (props) => {
         onOpen={() => props.setOpen(true)}
         open={props.open}
         size="large"
-        centered
+        centered={false}
       >
         {renderModalHeader()}
         <Modal.Content>

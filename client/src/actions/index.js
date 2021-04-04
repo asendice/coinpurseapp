@@ -186,7 +186,6 @@ export const addTransaction = (trans) => {
 //<-----> BEGINNING OF ACTION CREATORS FOR PORT LIST <----->
 
 export const createPortList = (transList) => {
-  console.log(transList);
   return {
     type: "CREATE_PORTLIST",
     payload: transList,

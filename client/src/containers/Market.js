@@ -46,7 +46,7 @@ const Market = (props) => {
     if (filterMarketForTerm.length === 0) {
       return (
         <div>
-          <SearchNotFound term={term} nf="Zero Results Found..." />
+          <SearchNotFound term={term} nf="Zero Results Found..." loading="Loading Market..." />
         </div>
       );
     } else {

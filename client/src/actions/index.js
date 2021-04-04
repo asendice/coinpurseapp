@@ -119,8 +119,10 @@ export const postTransaction = (trans) => {
         },
       })
       .then((response) => {
+        console.log("response", response);
         if (response) {
-          return response.data;
+          console.log("response", response);
+          return response;
         } else {
           const error = new Error(
             `Error ${response.status}: ${response.statusText}`
@@ -130,7 +132,7 @@ export const postTransaction = (trans) => {
         }
       })
       .then((transactions) =>
-        dispatch(addTransaction(transactions.data.message))
+        dispatch(addTransaction(transactions.data.result))
       )
       .catch((error) => {
         console.log("postTransaction", error.message);

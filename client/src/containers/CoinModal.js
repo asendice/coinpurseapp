@@ -123,7 +123,7 @@ const CoinModal = (props) => {
     const date =
       today.getMonth() + 1 + "-" + today.getDate() + "-" + today.getFullYear();
     const time =
-      today.getHours() +
+      (today.getHours() % 12 || 12) +
       ":" +
       (today.getMinutes() < 10 ? "0" : "") +
       today.getMinutes() +

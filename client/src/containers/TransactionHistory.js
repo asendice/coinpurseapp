@@ -27,8 +27,8 @@ const TransactionHistory = (props) => {
 
   const filterTransactionsByTerm = sortTrans.filter((trans) => {
     if (
-      trans.name.toLowerCase().includes(term) ||
-      trans.symbol.toLowerCase().includes(term) ||
+      trans.name.toLowerCase().includes(term.toLowerCase()) ||
+      trans.symbol.toLowerCase().includes(term.toLowerCase()) ||
       trans.date.includes(term)
     ) {
       return trans;
@@ -41,7 +41,11 @@ const TransactionHistory = (props) => {
     if (filterTransactionsByTerm.length === 0) {
       return (
         <div key="nf">
-          <SearchNotFound term={term} nf="Zero Transactions Found..." loading="No Transaction History Yet..." />
+          <SearchNotFound
+            term={term}
+            nf="Zero Transactions Found..."
+            loading="No Transaction History Yet..."
+          />
         </div>
       );
     } else {

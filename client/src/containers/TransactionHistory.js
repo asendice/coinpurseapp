@@ -22,7 +22,7 @@ const TransactionHistory = (props) => {
   };
 
   const sortTrans = props.transactions.transactions.sort(
-    (a, b) => b.date.localeCompare(a.date) || b.time.localeCompare(a.time)
+    (a, b) => a.date.localeCompare(b.date) || b.time.localeCompare(a.time)
   );
 
   const filterTransactionsByTerm = sortTrans.filter((trans) => {

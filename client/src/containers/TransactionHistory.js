@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Segment, Label, Popup, Icon, Header } from "semantic-ui-react";
 import Title from "./Title";
 import SearchNotFound from "../components/SearchNotFound";
-import { roundComma } from "../utils/Helper";
+import { roundComma, readableDate } from "../utils/Helper";
 import { getTransactions } from "../actions";
 import { connect } from "react-redux";
 
@@ -21,24 +21,28 @@ const TransactionHistory = (props) => {
     setTerm(term);
   };
 
-  const sortTrans = props.transactions.transactions.sort(
-    (a, b) => a.date.localeCompare(b.date) || b.time.localeCompare(a.time)
+  const filterTransactionsByTerm = props.transactions.transactions.filter(
+    (trans) => {
+      if (
+        trans.name.toLowerCase().includes(term.toLowerCase()) ||
+        trans.symbol.toLowerCase().includes(term.toLowerCase()) ||
+        trans.date.includes(term)
+      ) {
+        return trans;
+      } else {
+        return null;
+      }
+    }
   );
 
-  const filterTransactionsByTerm = sortTrans.filter((trans) => {
-    if (
-      trans.name.toLowerCase().includes(term.toLowerCase()) ||
-      trans.symbol.toLowerCase().includes(term.toLowerCase()) ||
-      trans.date.includes(term)
-    ) {
-      return trans;
-    } else {
-      return null;
-    }
+  const sortTrans = filterTransactionsByTerm.sort((a, b) => {
+    const one = new Date(a.createdAt);
+    const two = new Date(b.createdAt);
+    return two - one;
   });
 
   const renderNotFound = () => {
-    if (filterTransactionsByTerm.length === 0) {
+    if (sortTrans.length === 0) {
       return (
         <div key="nf">
           <SearchNotFound
@@ -55,13 +59,15 @@ const TransactionHistory = (props) => {
 
   const renderTransactions = () => {
     if (props.transactions.transactions.length > 0) {
-      return filterTransactionsByTerm.map((trans) => {
+      return sortTrans.map((trans) => {
+        const date = new Date(trans.createdAt);
         return (
           <tr key={trans._id}>
             <td>
               <Label>
-                <div>{trans.date}</div>
-                <div>{trans.time}</div>
+                {/* <div>{trans.date}</div>
+                <div>{trans.time}</div> */}
+                {readableDate(date.toString())}
               </Label>
             </td>
             <td>

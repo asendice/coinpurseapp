@@ -63,6 +63,26 @@ const renderArrow = (num) => {
   );
 };
 
+// Argument format needs to be "Wed May 12 2021 18:50:46 GMT-0700 (Pacific Daylight Time)"
+const readableDate = (str) => {
+  console.log(str);
+  const date = str.slice(3, 15);
+  const timeTwentyFour = str.slice(15, 24);
+  const timeTwelve =
+    Number(timeTwentyFour.slice(0, 3)) > 12
+      ? `${timeTwentyFour.slice(0, 3) - 12 + `:` + timeTwentyFour.slice(4)}` +
+        " " +
+        `PM`
+      : `${timeTwentyFour.slice(0, 3) + `:` + timeTwentyFour.slice(4)}` +
+        " " +
+        `AM`;
+  const result = `${timeTwelve}
+  ${date}
+  `;
+
+  return result;
+};
+
 export {
   roundComma,
   convertMc,
@@ -72,4 +92,5 @@ export {
   renderArrow,
   rounder,
   ifNegative,
+  readableDate,
 };

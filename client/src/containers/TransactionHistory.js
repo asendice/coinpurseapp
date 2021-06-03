@@ -21,6 +21,7 @@ const TransactionHistory = (props) => {
     setTerm(term);
   };
 
+  // filters the transaction object array .name .symbol .date by search term
   const filterTransactionsByTerm = props.transactions.transactions.filter(
     (trans) => {
       if (
@@ -35,12 +36,14 @@ const TransactionHistory = (props) => {
     }
   );
 
+  // sorts the transaction array to display most recent to least recent
   const sortTrans = filterTransactionsByTerm.sort((a, b) => {
     const one = new Date(a.createdAt);
     const two = new Date(b.createdAt);
     return two - one;
   });
 
+  // if the transaction array contains no transactions render Search Not Found component
   const renderNotFound = () => {
     if (sortTrans.length === 0) {
       return (

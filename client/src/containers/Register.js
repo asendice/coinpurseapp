@@ -16,6 +16,7 @@ import { register } from "../actions";
 const Register = (props) => {
   const [open, setOpen] = useState(false);
 
+  // pass formValues to register action creator and open modal
   const onFormSubmit = (values) => {
     props.register(values);
     setOpen(true);

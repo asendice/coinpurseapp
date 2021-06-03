@@ -16,21 +16,23 @@ const Market = (props) => {
   const [term, setTerm] = useState("");
   const [open, setOpen] = useState(false);
 
+  // on render and when modal opens get market data and favorites/transaction date by the logged in userId
   useEffect(() => {
     props.getMarket();
     props.getFavorites(props.userId);
     props.getTransactions(props.userId);
   }, [open]);
 
+  // when submitted setTerm to the argument
   const onTermSubmit = (term) => {
     setTerm(term);
   };
-
+  // when table is click open modal and selecting the "selected coin" 
   const onTableRowClick = (coin) => {
     setOpen(true);
     props.coinSelect(coin);
   };
-
+  // renders out an array of coin objects based on if the term string is included in the market's coin's name or symbol
   const filterMarketForTerm = props.market.filter((coin) => {
     if (
       coin.name.toLowerCase().includes(term.toLowerCase()) ||
@@ -42,6 +44,7 @@ const Market = (props) => {
     }
   });
 
+  // renders SeatchNotFound component if the length of the filterMarketTerm is 0
   const renderNotFound = () => {
     if (filterMarketForTerm.length === 0) {
       return (
@@ -59,6 +62,7 @@ const Market = (props) => {
   };
 
   const renderMarket = () => {
+    // returns an array of just symbols from favorites array of coin objects
     const mapFavs = props.favorites.favorites.map((fav) => {
       return fav.symbol;
     });

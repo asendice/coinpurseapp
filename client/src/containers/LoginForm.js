@@ -19,32 +19,34 @@ const renderInput = ({
     </div>
   );
 };
-
+// validator to to let user know this field is required
 const required = (x) => {
   if (!x || x === "") {
     return <span style={{ color: "red" }}>*This field is required.</span>;
   }
   return undefined;
 };
-
+// validator to to let user know this field can only contain alpha numeric values a-z, A-Z, 0-9
 const alphaNumeric = (value) =>
   value && /[^a-zA-Z0-9 ]/i.test(value) ? (
     <span style={{ color: "red" }}> *Only alphanumeric characters</span>
   ) : undefined;
 
+// validator to to let user know this field's length needs to be more than 4 characters
 const length = (value) =>
   value && value.length < 4 ? (
     <span style={{ color: "red" }}>
       {`*This field must contain more than 4 characters.`}
     </span>
   ) : undefined;
+// validator to to let user know this field's length must be less than 12 characters
 const maxLength = (value) =>
   value && value.length > 12 ? (
     <span style={{ color: "red" }}>
       {`*This field must contain no more than 12 characters.`}
     </span>
   ) : undefined;
-
+// value can't include a space " "
 const userNameVal = (value) =>
   value && value.includes(" ") ? (
     <span style={{ color: "red" }}>*This field cannot include spaces.</span>

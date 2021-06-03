@@ -5,11 +5,13 @@ import { deleteFavorite, getFavorites, getMarket } from "../actions";
 import { connect } from "react-redux";
 
 const Favorites = (props) => {
+  // on initial render pass userId to getFavorites Action Creator and call getMarket ActionCreator
   useEffect(() => {
     props.getFavorites(props.userId);
     props.getMarket();
   }, []);
 
+  // takes an arg ('btc') or ('eth') filters favorites array and deletes the duplicate by passing the _id to deleteFavorite Action Creator
   const handleDeleteClick = (symbol) => {
     const filterFav = props.favorites.favorites.filter(
       (coin) => coin.symbol === symbol
@@ -18,9 +20,12 @@ const Favorites = (props) => {
   };
 
   const renderTableRow = () => {
+    // returns an array of symbols from favorites arr
     const mapFavorites = props.favorites.favorites.map((fav) => {
       return fav.symbol;
     });
+
+    // filters market and returns all coins that are included in the mapFavorites arr
     const filterMarket = props.market.filter((coin) => {
       if (mapFavorites.includes(coin.symbol)) {
         return coin;

@@ -22,16 +22,19 @@ const PortfolioList = (props) => {
 
   GetData();
 
+  // set the selected coin when you click and opens modal
   const onCoinClick = (coin) => {
     props.coinSelect(coin);
     props.setOpen(true);
   };
 
   const renderCard = () => {
+    // returns an array of names from portfolio array of objects
     const mapNameTrans = props.portfolio.map((coin) => {
       return coin.name;
     });
 
+    // renders array based on filtering through the market object array for any names in the mapNameTrans array
     const filterMarket = props.market.filter((coin) => {
       if (mapNameTrans.includes(coin.name)) {
         return coin;
@@ -39,14 +42,18 @@ const PortfolioList = (props) => {
         return null;
       }
     });
+
+    //maps over arr1, searches through arr2 and spreads the array out if any of the object.names are the same and then spreads the objects of arr1
     const mergeByName = (arr1, arr2) =>
       arr1.map((itm) => ({
         ...arr2.find((item) => item.name === itm.name && item),
         ...itm,
       }));
 
+    // merges filterMarket and Portfolio together
     const upToDatePortfolio = mergeByName(filterMarket, props.portfolio);
 
+    // sort the array of objects based on total largest to smallest
     const portSorted = upToDatePortfolio.sort((a, b) => {
       return b.total - a.total;
     });

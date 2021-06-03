@@ -17,6 +17,7 @@ const Portfolio = (props) => {
   const [portGain, setPortGain] = useState(0);
   const [portPercentGain, setPortPercentGain] = useState(0);
 
+  // on initial render and when modal opens calls market data and get's the transactions of the logged in user
   useEffect(() => {
     props.getMarket();
     props.getTransactions(props.userId);

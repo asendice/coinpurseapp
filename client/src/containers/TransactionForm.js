@@ -22,6 +22,7 @@ const renderTextArea = ({
   );
 };
 
+// renders amount input field
 const renderAmt = ({ input, label, meta: { touched, error, warning } }) => {
   return (
     <div>
@@ -33,6 +34,7 @@ const renderAmt = ({ input, label, meta: { touched, error, warning } }) => {
   );
 };
 
+//validator to ensure the value is less than 240 characters
 const maxLength = (value) =>
   value && value.length > 100 ? (
     <span style={{ color: "red" }}>
@@ -40,6 +42,7 @@ const maxLength = (value) =>
     </span>
   ) : undefined;
 
+  // validator to let user know this field is required
 const required = (num) => {
   if (!num || num === "") {
     return (
@@ -50,10 +53,14 @@ const required = (num) => {
   }
   return undefined;
 };
+
+// validator that only allows numbers
 const number = (value) =>
   value && isNaN(Number(value)) ? (
     <span style={{ color: "red" }}>*This field must only contain numbers.</span>
   ) : undefined;
+
+// validator that cannot === 0
 const notZero = (value) =>
   value && value <= 0 ? (
     <span style={{ color: "red" }}>

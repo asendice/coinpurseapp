@@ -23,6 +23,7 @@ const Login = (props) => {
   };
 
   const renderModal = () => {
+    // if user is loggedIn redirect to /market page
     if (props.loggedIn) {
       return (
         <>
@@ -30,6 +31,7 @@ const Login = (props) => {
         </>
       );
     } else if (!props.loggedIn) {
+      // generate error
       const mapUserInfoError = props.userInfo.data.errors.map((errors) => {
         return errors.user || errors.password;
       });

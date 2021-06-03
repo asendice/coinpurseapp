@@ -47,6 +47,7 @@ const CoinModal = (props) => {
     }, 2500);
   }
 
+  // cretes an array of strings that have been rounded up
   const values = [
     `$${roundComma(props.selectedCoin.current_price)}`,
     `${roundComma(props.selectedCoin.price_change_percentage_24h)}%`,
@@ -60,16 +61,18 @@ const CoinModal = (props) => {
       : "Not Available",
   ];
 
+  // toggle for accordion
   const accordionClick = () => {
     const newIndex = activeIndex === index ? -1 : index;
     setActiveIndex(newIndex);
   };
 
   const favoriteClick = (coin) => {
+    // filter the favorites array by the coin symbol that user click on
     const filterFav = props.favorites.favorites.filter(
       (fav) => fav.symbol === coin.symbol
     );
-
+    // maps over favorites array and returns an array based on if the symbols in favorites array are equal to the selected coin symbol
     const mapFav = props.favorites.favorites.map((fav) => {
       if (fav.symbol === props.selectedCoin.symbol) {
         return false;
@@ -88,10 +91,12 @@ const CoinModal = (props) => {
     }
   };
 
+  // return array of names from portfolio object array
   const mapNameTrans = props.portfolio.map((coin) => {
     return coin.name;
   });
 
+  // filters market object array by if the mapNameTrans array includes any of the object.names
   const filterMarket = props.market.filter((coin) => {
     if (mapNameTrans.includes(coin.name)) {
       return coin;
@@ -99,12 +104,14 @@ const CoinModal = (props) => {
       return null;
     }
   });
+  //maps over arr1, searches through arr2 and spreads the array out if any of the object.names are the same and then spreads the objects of arr1
   const mergeByName = (arr1, arr2) =>
     arr1.map((itm) => ({
       ...arr2.find((item) => item.name === itm.name && item),
       ...itm,
     }));
 
+  // merger filterMarket and portfolio array together
   const upToDatePortfolio = mergeByName(filterMarket, props.portfolio);
 
   const filterPortList = upToDatePortfolio.filter((coin) => {
@@ -130,6 +137,9 @@ const CoinModal = (props) => {
       ":" +
       (today.getSeconds() < 10 ? "0" : "") +
       today.getSeconds();
+    // if buy is true or if coinAmt greater than or equal to values.amt
+    // prevents the user from being able to sell assets when they don't have enough
+    // takes formValues and adds on properties
     if (buy || coinAmt >= Number(values.amt)) {
       values.userId = props.userInfo.data.message._id;
       values.name = props.selectedCoin.name;
@@ -289,18 +299,13 @@ const CoinModal = (props) => {
           />
         </span>
         <span style={{ float: "right" }}>
-          <Popup
-            content="Close window."
-            trigger={
-              <Icon
-                style={{ cursor: "pointer" }}
-                floated="right"
-                size="small"
-                float="right"
-                name="x"
-                onClick={() => props.setOpen(false)}
-              />
-            }
+          <Icon
+            style={{ cursor: "pointer" }}
+            floated="right"
+            size="small"
+            float="right"
+            name="x"
+            onClick={() => props.setOpen(false)}
           />
         </span>
       </Modal.Header>

@@ -97,6 +97,7 @@ const UserStats = (props) => {
 
   const renderTopGain = () => {
     if (upToDatePortfolio.length > 0) {
+      // returns new array of coins with just the name image symbol and newly created gain property
       const portListMap = upToDatePortfolio.map((coin) => {
         return {
           name: coin.name,
@@ -105,6 +106,8 @@ const UserStats = (props) => {
           gain: coin.amt * coin.current_price - coin.total,
         };
       });
+      // for every element in portListMap array check if the previous gain is greater than the current element gain
+      // keep doing that until there is one element left that is the top gainer
       const top = portListMap.reduce((prev, current) => {
         return prev.gain > current.gain ? prev : current;
       });
@@ -141,6 +144,8 @@ const UserStats = (props) => {
           gain: coin.amt * coin.current_price - coin.total,
         };
       });
+      // for every element in portListMap array check if the previous gain is less than the current element gain
+      // keep doing that until there is one element left that is the worst  gainer
       const bot = portListMap.reduce((prev, current) => {
         return prev.gain < current.gain ? prev : current;
       });

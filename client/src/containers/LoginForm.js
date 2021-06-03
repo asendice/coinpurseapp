@@ -68,7 +68,7 @@ let Login = (props) => {
         name="password"
         component={renderInput}
         type="password"
-        validate={[required, alphaNumeric, length, maxLength, userNameVal]}
+        validate={[required, length, maxLength, userNameVal]}
       />
       <Divider hidden />
       <button

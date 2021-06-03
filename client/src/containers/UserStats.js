@@ -86,7 +86,7 @@ const UserStats = (props) => {
             color: portGain === 0 ? "grey" : portGain > 0 ? "green" : "red",
           }}
         >
-          {ifNegative(roundComma(portGain))}
+          {(ifNegative(roundComma(portGain)))}
         </Statistic.Value>
         <Statistic.Label style={{ color: "grey" }}>
           Estimated Gain

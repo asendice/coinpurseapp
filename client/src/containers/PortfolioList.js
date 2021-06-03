@@ -54,6 +54,7 @@ const PortfolioList = (props) => {
     if (props.portfolio.length > 0) {
       return portSorted.map((coin) => {
         const dollarGain = coin.amt * coin.current_price - coin.total;
+        console.log(roundComma(dollarGain), "dollarGain")
         if (coin.amt === 0) {
           return null;
         } else {

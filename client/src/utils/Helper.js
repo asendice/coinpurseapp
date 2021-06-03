@@ -2,15 +2,16 @@ import { Icon } from "semantic-ui-react";
 
 const roundComma = (num) => {
   if (num) {
-    return num.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    let number = Number(num)
+    return number.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   } else {
     return 0;
   }
 };
 
 const ifNegative = (num) => {
-  if (num < 0) {
-    const string = num.toString();
+  const string = num.toString();
+  if (num.includes("-")) {
     return [string.slice(0, 1), "$", string.slice(1)].join("");
   } else {
     return `$${num}`;
@@ -65,7 +66,6 @@ const renderArrow = (num) => {
 
 // Argument format needs to be "Wed May 12 2021 18:50:46 GMT-0700 (Pacific Daylight Time)"
 const readableDate = (str) => {
-  console.log(str);
   const date = str.slice(3, 15);
   const timeTwentyFour = str.slice(15, 24);
   const timeTwelve =
